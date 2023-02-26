@@ -2,12 +2,15 @@
     let url = "";
 
     async function getUrl() {
-        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-        url = tab.url;
+        chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, {action: 'modify'}, (resp) => {
+                console.log("Page modified");
+            })
+        })
     }
 </script>
 <div id="popup-window" style="width: 400px;height: 500px">
-    <button on:click={getUrl}>Reveal Current URL</button>
+    <button on:click={getUrl}>run</button>
 
     <div>The current URL is: {url}</div>
 

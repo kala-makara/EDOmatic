@@ -4,7 +4,7 @@
   "scripts": {
     "dev:extension": "nodemon --watch src --watch static --ext .* --exec \"npm run build & npx esbuild src/content_scripts/main.ts --bundle --outdir=build/content_scripts/\"",
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build": "svelte-kit build & npx esbuild src/scripts/content_scripts.ts src/scripts/background.ts --bundle --outdir=build/scripts/",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
