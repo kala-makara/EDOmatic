@@ -1,13 +1,14 @@
 {
-  "name": "SvelteKit Extension",
-  "description": "A browser extension made with Svelte Kit",
+  "name": "AutoDOM",
+  "description": "Your buddy to evaluate those lecturer for you",
   "version": "1.0.0",
   "manifest_version": 3,
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "declarativeContent"
   ],
   "action": {
-    "default_title": "Svelte Extension",
+    "default_title": "autoDOM",
     "default_icon": {
         "16": "favicon.png",
         "24": "favicon.png",

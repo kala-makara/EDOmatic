@@ -1,10 +1,17 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "update-icon") {
-        // Update the extension icon based on the page URL
-        if (message.url.includes("edom.ui.ac.id")) {
-            chrome.action.setIcon({ path: "../dmabot.png" });
-        } else {
-            chrome.action.setIcon({ path: "../favicon.png" });
-        }
-    }
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.action.disable();
+
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
+        let exampleRule = {
+            conditions: [
+                new chrome.declarativeContent.PageStateMatcher({
+                    pageUrl: { urlContains: "edom.ui.ac.id" },
+                }),
+            ],
+            actions: [new chrome.declarativeContent.ShowAction()],
+        };
+
+        let rules = [exampleRule];
+        chrome.declarativeContent.onPageChanged.addRules(rules);
+    });
 });
